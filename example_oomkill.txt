@@ -1,0 +1,223 @@
+[ven. nov. 28 07:26:44 2025] postmaster invoked oom-killer: gfp_mask=0x140cca(GFP_HIGHUSER_MOVABLE|__GFP_COMP), order=0, oom_score_adj=0
+[ven. nov. 28 07:26:44 2025] CPU: 7 PID: 3240780 Comm: postmaster Kdump: loaded Not tainted 5.14.0-362.8.1.el9_3.x86_64 #1
+[ven. nov. 28 07:26:44 2025] Hardware name: VMware, Inc. VMware20,1/440BX Desktop Reference Platform, BIOS VMW201.00V.24504846.B64.2501180339 01/18/2025
+[ven. nov. 28 07:26:44 2025] Call Trace:
+[ven. nov. 28 07:26:44 2025]  <TASK>
+[ven. nov. 28 07:26:44 2025]  dump_stack_lvl+0x34/0x48
+[ven. nov. 28 07:26:44 2025]  dump_header+0x4a/0x201
+[ven. nov. 28 07:26:44 2025]  oom_kill_process.cold+0xb/0x10
+[ven. nov. 28 07:26:44 2025]  out_of_memory+0xed/0x2e0
+[ven. nov. 28 07:26:44 2025]  __alloc_pages_slowpath.constprop.0+0x6e8/0x960
+[ven. nov. 28 07:26:44 2025]  __alloc_pages+0x21d/0x250
+[ven. nov. 28 07:26:44 2025]  folio_alloc+0x17/0x50
+[ven. nov. 28 07:26:44 2025]  __filemap_get_folio+0x1cd/0x330
+[ven. nov. 28 07:26:44 2025]  filemap_fault+0x40b/0x740
+[ven. nov. 28 07:26:44 2025]  __do_fault+0x33/0x140
+[ven. nov. 28 07:26:44 2025]  do_read_fault+0xf0/0x160
+[ven. nov. 28 07:26:44 2025]  do_fault+0xa9/0x390
+[ven. nov. 28 07:26:44 2025]  __handle_mm_fault+0x585/0x650
+[ven. nov. 28 07:26:44 2025]  handle_mm_fault+0xc5/0x2a0
+[ven. nov. 28 07:26:44 2025]  do_user_addr_fault+0x1b4/0x6a0
+[ven. nov. 28 07:26:44 2025]  exc_page_fault+0x62/0x150
+[ven. nov. 28 07:26:44 2025]  asm_exc_page_fault+0x22/0x30
+[ven. nov. 28 07:26:44 2025] RIP: 0033:0x65c2a5
+[ven. nov. 28 07:26:44 2025] Code: Unable to access opcode bytes at RIP 0x65c27b.
+[ven. nov. 28 07:26:44 2025] RSP: 002b:00007ffde925a230 EFLAGS: 00010206
+[ven. nov. 28 07:26:44 2025] RAX: 0000000000cebee0 RBX: 00007f57f462fc30 RCX: 000000000223c470
+[ven. nov. 28 07:26:44 2025] RDX: 000000000223c430 RSI: 0000000000000005 RDI: 0000000000001ef8
+[ven. nov. 28 07:26:44 2025] RBP: 00022a3a26bfe000 R08: 0000000000000007 R09: 00007f578022335f
+[ven. nov. 28 07:26:44 2025] R10: 00007f57f4629480 R11: 0000000000000006 R12: 0000000000000004
+[ven. nov. 28 07:26:44 2025] R13: 00000000021db0f4 R14: 000000000223c468 R15: 00007ffde925a294
+[ven. nov. 28 07:26:44 2025]  </TASK>
+[ven. nov. 28 07:26:44 2025] Mem-Info:
+[ven. nov. 28 07:26:44 2025] active_anon:675488 inactive_anon:3104512 isolated_anon:0
+                              active_file:77 inactive_file:12 isolated_file:0
+                              unevictable:734 dirty:0 writeback:0
+                              slab_reclaimable:75026 slab_unreclaimable:36644
+                              mapped:942802 shmem:1127599 pagetables:42642
+                              sec_pagetables:0 bounce:0
+                              kernel_misc_reclaimable:0
+                              free:33077 free_pcp:0 free_cma:0
+[ven. nov. 28 07:26:44 2025] Node 0 active_anon:2701952kB inactive_anon:12418048kB active_file:308kB inactive_file:48kB unevictable:2936kB isolated(anon):0kB isolated(file):0kB mapped:3771208kB dirty:0kB writeback:0kB shmem:4510396kB shmem_thp: 0kB shmem_pmdmapped: 0kB anon_thp: 5267456kB writeback_tmp:0kB kernel_stack:16960kB pagetables:170568kB sec_pagetables:0kB all_unreclaimable? no
+[ven. nov. 28 07:26:44 2025] Node 0 DMA free:13312kB boost:0kB min:64kB low:80kB high:96kB reserved_highatomic:0KB active_anon:0kB inactive_anon:0kB active_file:0kB inactive_file:0kB unevictable:0kB writepending:0kB present:15992kB managed:15360kB mlocked:0kB bounce:0kB free_pcp:0kB local_pcp:0kB free_cma:0kB
+[ven. nov. 28 07:26:44 2025] lowmem_reserve[]: 0 2701 15638 15638 15638
+[ven. nov. 28 07:26:44 2025] Node 0 DMA32 free:63184kB boost:0kB min:11660kB low:14572kB high:17484kB reserved_highatomic:0KB active_anon:4000kB inactive_anon:2625748kB active_file:876kB inactive_file:304kB unevictable:0kB writepending:0kB present:3128744kB managed:2800988kB mlocked:0kB bounce:0kB free_pcp:0kB local_pcp:0kB free_cma:0kB
+[ven. nov. 28 07:26:44 2025] lowmem_reserve[]: 0 0 12936 12936 12936
+[ven. nov. 28 07:26:44 2025] Node 0 Normal free:55812kB boost:0kB min:55852kB low:69812kB high:83772kB reserved_highatomic:0KB active_anon:2697952kB inactive_anon:9792300kB active_file:216kB inactive_file:0kB unevictable:2936kB writepending:0kB present:13631488kB managed:13254180kB mlocked:0kB bounce:0kB free_pcp:0kB local_pcp:0kB free_cma:0kB
+[ven. nov. 28 07:26:44 2025] lowmem_reserve[]: 0 0 0 0 0
+[ven. nov. 28 07:26:44 2025] Node 0 DMA: 0*4kB 0*8kB 0*16kB 0*32kB 0*64kB 0*128kB 0*256kB 0*512kB 1*1024kB (U) 2*2048kB (UM) 2*4096kB (M) = 13312kB
+[ven. nov. 28 07:26:44 2025] Node 0 DMA32: 496*4kB (UME) 153*8kB (UME) 315*16kB (UME) 350*32kB (UME) 128*64kB (UME) 82*128kB (UME) 52*256kB (UME) 12*512kB (UME) 7*1024kB (UM) 0*2048kB 0*4096kB = 64760kB
+[ven. nov. 28 07:26:44 2025] Node 0 Normal: 4597*4kB (UME) 1120*8kB (UME) 556*16kB (UME) 174*32kB (UME) 77*64kB (UME) 33*128kB (UME) 18*256kB (UME) 2*512kB (U) 1*1024kB (M) 0*2048kB 0*4096kB = 57620kB
+[ven. nov. 28 07:26:44 2025] Node 0 hugepages_total=0 hugepages_free=0 hugepages_surp=0 hugepages_size=1048576kB
+[ven. nov. 28 07:26:44 2025] Node 0 hugepages_total=0 hugepages_free=0 hugepages_surp=0 hugepages_size=2048kB
+[ven. nov. 28 07:26:44 2025] 1152741 total pagecache pages
+[ven. nov. 28 07:26:44 2025] 24111 pages in swap cache
+[ven. nov. 28 07:26:44 2025] Free swap  = 1694460kB
+[ven. nov. 28 07:26:44 2025] Total swap = 2097148kB
+[ven. nov. 28 07:26:44 2025] 4194056 pages RAM
+[ven. nov. 28 07:26:44 2025] 0 pages HighMem/MovableOnly
+[ven. nov. 28 07:26:44 2025] 176424 pages reserved
+[ven. nov. 28 07:26:44 2025] 0 pages cma reserved
+[ven. nov. 28 07:26:44 2025] 0 pages hwpoisoned
+[ven. nov. 28 07:26:44 2025] Tasks state (memory values in pages):
+[ven. nov. 28 07:26:44 2025] [  pid  ]   uid  tgid total_vm      rss pgtables_bytes swapents oom_score_adj name
+[ven. nov. 28 07:26:44 2025] [    302]     0   302     2111      642    49152      894             0 haveged
+[ven. nov. 28 07:26:44 2025] [    740]     0   740    17332     8817   172032      194          -250 systemd-journal
+[ven. nov. 28 07:26:44 2025] [    752]     0   752     8742      150    94208      794         -1000 systemd-udevd
+[ven. nov. 28 07:26:44 2025] [    886]    32   886     3542        5    69632      204             0 rpcbind
+[ven. nov. 28 07:26:44 2025] [    887]     0   887     4754       42    45056      156         -1000 auditd
+[ven. nov. 28 07:26:44 2025] [    910]    81   910     2702       45    57344      121          -900 dbus-broker-lau
+[ven. nov. 28 07:26:44 2025] [    914]    81   914     1274       94    53248       29          -900 dbus-broker
+[ven. nov. 28 07:26:44 2025] [    915]     0   915    64662      316   131072      421             0 NetworkManager
+[ven. nov. 28 07:26:44 2025] [    921]   988   921      676        7    49152       32             0 lsmd
+[ven. nov. 28 07:26:44 2025] [    924]     0   924     4904      164    73728      194             0 systemd-logind
+[ven. nov. 28 07:26:44 2025] [    925]     0   925     4614        0    81920      402             0 VGAuthService
+[ven. nov. 28 07:26:44 2025] [    926]     0   926    60675      253    98304      232             0 vmtoolsd
+[ven. nov. 28 07:26:44 2025] [    979]   993   979   248720      418   733184     3295             0 node
+[ven. nov. 28 07:26:44 2025] [    991]   986   991   106336     2102   143360     1995             0 memcached
+[ven. nov. 28 07:26:44 2025] [    996]     0   996    13971        4    86016      736             0 gssproxy
+[ven. nov. 28 07:26:44 2025] [   1012]   998  1012    49841     6303   618496     3648             0 /opt/saltstack/
+[ven. nov. 28 07:26:44 2025] [   1013]   998  1013    52333    11566   638976      372             0 /opt/saltstack/
+[ven. nov. 28 07:26:44 2025] [   1014]     0  1014     4177      330    73728        0         -1000 sshd
+[ven. nov. 28 07:26:44 2025] [   1019]     0  1019    21660      353    73728      724             0 monit
+[ven. nov. 28 07:26:44 2025] [   1023]     0  1023     6269     1121    94208      109             0 httpd
+[ven. nov. 28 07:26:44 2025] [   1027]     0  1027     6281      353    90112      741             0 snmpd
+[ven. nov. 28 07:26:44 2025] [   1037]     0  1037     1167       15    49152       29             0 atd
+[ven. nov. 28 07:26:44 2025] [   1952]   993  1952   462997    25757   557056    12826             0 phantomjs
+[ven. nov. 28 07:26:44 2025] [   1953]   993  1953   462997    25728   569344    12872             0 phantomjs
+[ven. nov. 28 07:26:44 2025] [   1954]   993  1954   462997    25210   557056    12781             0 phantomjs
+[ven. nov. 28 07:26:44 2025] [   1956]   993  1956   462997    25222   565248    12866             0 phantomjs
+[ven. nov. 28 07:26:44 2025] [   1963]   993  1963   462997    25219   557056    13233             0 phantomjs
+[ven. nov. 28 07:26:44 2025] [   2108]     0  2108    32238     1909   434176     2886             0 python3.10
+[ven. nov. 28 07:26:44 2025] [   2218]   998  2218    50201     6263   425984     3979             0 /opt/saltstack/
+[ven. nov. 28 07:26:44 2025] [   2261]     0  2261   147202    10040   651264     2281             0 /opt/saltstack/
+[ven. nov. 28 07:26:44 2025] [   2701]   998  2701    71235     8444   466944     1995             0 /opt/saltstack/
+[ven. nov. 28 07:26:44 2025] [   2719]   998  2719    52340     8878   417792     2103             0 /opt/saltstack/
+[ven. nov. 28 07:26:44 2025] [   2830]   998  2830    50514     7870   385024     2151             0 /opt/saltstack/
+[ven. nov. 28 07:26:44 2025] [   2863]   998  2863   144728     7883   434176     2657             0 /opt/saltstack/
+[ven. nov. 28 07:26:44 2025] [   2868]   998  2868    93893     9644   495616     2832             0 /opt/saltstack/
+[ven. nov. 28 07:26:44 2025] [   2876]   998  2876    73143     9471   483328     2972             0 /opt/saltstack/
+[ven. nov. 28 07:26:44 2025] [   2887]   998  2887    92446    10676   499712     2534             0 /opt/saltstack/
+[ven. nov. 28 07:26:44 2025] [   2897]   998  2897    92216    11009   495616     1771             0 /opt/saltstack/
+[ven. nov. 28 07:26:44 2025] [   2900]   998  2900    91843    10041   491520     2576             0 /opt/saltstack/
+[ven. nov. 28 07:26:44 2025] [ 471615]   996 471615   746832     1334   274432        0             0 polkitd
+[ven. nov. 28 07:26:44 2025] [ 501459]     0 501459      761       22    40960        0             0 agetty
+[ven. nov. 28 07:26:44 2025] [2479764]   994 2479764    21029      118    61440       28             0 chronyd
+[ven. nov. 28 07:26:44 2025] [2366118]    26 2366118   651151    19282   294912        0         -1000 postmaster
+[ven. nov. 28 07:26:44 2025] [2366119]    26 2366119    16712      460   110592        0             0 postmaster
+[ven. nov. 28 07:26:44 2025] [2366120]    26 2366120   652108   625744  5152768        0             0 postmaster
+[ven. nov. 28 07:26:44 2025] [2366121]    26 2366121   651185   623364  5128192        0             0 postmaster
+[ven. nov. 28 07:26:44 2025] [2366123]    26 2366123   651151     4654   163840        0             0 postmaster
+[ven. nov. 28 07:26:44 2025] [2366124]    26 2366124   652061      953   188416        0             0 postmaster
+[ven. nov. 28 07:26:44 2025] [2366125]    26 2366125   651549      736   151552        0             0 postmaster
+[ven. nov. 28 07:26:44 2025] [3494131]     0 3494131     2137      217    57344        0             0 crond
+[ven. nov. 28 07:26:44 2025] [3494146]    48 3494146     6409      793    90112      108             0 httpd
+[ven. nov. 28 07:26:44 2025] [3494147]     0 3494147     6755      797    90112      108             0 httpd
+[ven. nov. 28 07:26:44 2025] [3494148]    48 3494148   615146     5264   544768      107             0 httpd
+[ven. nov. 28 07:26:44 2025] [3494149]    48 3494149   582360     5759   487424      107             0 httpd
+[ven. nov. 28 07:26:44 2025] [3494150]    48 3494150   582360     5955   483328      107             0 httpd
+[ven. nov. 28 07:26:44 2025] [3494435]    53 3494435  2104638   275160  2977792        0             0 java
+[ven. nov. 28 07:26:44 2025] [3494470]     0 3494470    21812      740   167936        0             0 smbd
+[ven. nov. 28 07:26:44 2025] [3494540]     0 3494540    21198      719   147456        0             0 smbd-notifyd
+[ven. nov. 28 07:26:44 2025] [3494541]     0 3494541    21196      719   118784        0             0 smbd-cleanupd
+[ven. nov. 28 07:26:44 2025] [3494546]     0 3494546     5268     2549    86016        0             0 munin-node
+[ven. nov. 28 07:26:44 2025] [3497188]    26 3497188   651694     2269   241664        0             0 postmaster
+[ven. nov. 28 07:26:44 2025] [3499060]    26 3499060   652362     7092   266240        0             0 postmaster
+[ven. nov. 28 07:26:44 2025] [3499439]     0 3499439    61797     2660   225280        0             0 php-fpm
+[ven. nov. 28 07:26:44 2025] [3499441]    48 3499441    82539    13266   319488        0             0 php-fpm
+[ven. nov. 28 07:26:44 2025] [3499442]    48 3499442    82183    12771   319488        0             0 php-fpm
+[ven. nov. 28 07:26:44 2025] [3499443]    48 3499443    83291    14520   335872        0             0 php-fpm
+[ven. nov. 28 07:26:44 2025] [3499444]    48 3499444    81672     8917   294912        0             0 php-fpm
+[ven. nov. 28 07:26:44 2025] [3499445]    48 3499445    82499    12755   315392        0             0 php-fpm
+[ven. nov. 28 07:26:44 2025] [3499446]    48 3499446    62256     2042   221184        0             0 php-fpm
+[ven. nov. 28 07:26:44 2025] [3499447]    48 3499447    62398     5511   258048        0             0 php-fpm
+[ven. nov. 28 07:26:44 2025] [3499448]    48 3499448    81911    10364   303104        0             0 php-fpm
+[ven. nov. 28 07:26:44 2025] [3499449]    48 3499449    62398     5965   258048        0             0 php-fpm
+[ven. nov. 28 07:26:44 2025] [3499450]    48 3499450    62256     2042   221184        0             0 php-fpm
+[ven. nov. 28 07:26:44 2025] [3499456]     0 3499456    65119     3904   249856        0             0 php-fpm
+[ven. nov. 28 07:26:44 2025] [3499466]    48 3499466    84542    11163   335872        0             0 php-fpm
+[ven. nov. 28 07:26:44 2025] [3499467]    48 3499467    84454     7868   294912        0             0 php-fpm
+[ven. nov. 28 07:26:44 2025] [3499468]    48 3499468    84474    11112   335872        0             0 php-fpm
+[ven. nov. 28 07:26:44 2025] [3499469]    48 3499469    84621    12074   348160        0             0 php-fpm
+[ven. nov. 28 07:26:44 2025] [3499470]    48 3499470    65773     4876   282624        0             0 php-fpm
+[ven. nov. 28 07:26:44 2025] [3499471]    48 3499471    84459     5807   294912        0             0 php-fpm
+[ven. nov. 28 07:26:44 2025] [3499472]    48 3499472    84497     7769   303104        0             0 php-fpm
+[ven. nov. 28 07:26:44 2025] [3499473]    48 3499473    84517    10219   327680        0             0 php-fpm
+[ven. nov. 28 07:26:44 2025] [3499474]    48 3499474    84436     8616   331776        0             0 php-fpm
+[ven. nov. 28 07:26:44 2025] [3499475]    48 3499475    84526    11811   335872        0             0 php-fpm
+[ven. nov. 28 07:26:44 2025] [3499476]    48 3499476    65467     2719   237568        0             0 php-fpm
+[ven. nov. 28 07:26:44 2025] [3499477]    48 3499477    65467     2720   237568        0             0 php-fpm
+[ven. nov. 28 07:26:44 2025] [3499478]    48 3499478    65467     2720   237568        0             0 php-fpm
+[ven. nov. 28 07:26:44 2025] [3499479]    48 3499479    65467     2720   237568        0             0 php-fpm
+[ven. nov. 28 07:26:44 2025] [3499480]    48 3499480    65467     2720   237568        0             0 php-fpm
+[ven. nov. 28 07:26:44 2025] [3499496]     0 3499496   187123     1905   151552        0             0 mergerfs
+[ven. nov. 28 07:26:44 2025] [3499508]     0 3499508  1744085   268993  2809856        0             0 java
+[ven. nov. 28 07:26:44 2025] [3499594]    26 3499594   651686     3484   286720        0             0 postmaster
+[ven. nov. 28 07:26:44 2025] [3499640]    26 3499640   651686     2313   225280        0             0 postmaster
+[ven. nov. 28 07:26:44 2025] [3499641]    26 3499641   651993    28018  1736704        0             0 postmaster
+[ven. nov. 28 07:26:44 2025] [3499642]    26 3499642   652002    43117  2453504        0             0 postmaster
+[ven. nov. 28 07:26:44 2025] [3499662]    26 3499662  1270759  1075110  9220096        0             0 postmaster
+[ven. nov. 28 07:26:44 2025] [3499663]    26 3499663   736669   712910  5869568        0             0 postmaster
+[ven. nov. 28 07:26:44 2025] [3499665]    26 3499665   660061    64927  2732032        0             0 postmaster
+[ven. nov. 28 07:26:44 2025] [3499666]    26 3499666   682255   657770  5435392        0             0 postmaster
+[ven. nov. 28 07:26:44 2025] [3499667]    26 3499667   762214   738728  6074368        0             0 postmaster
+[ven. nov. 28 07:26:44 2025] [3499668]    26 3499668   736118   712052  5869568        0             0 postmaster
+[ven. nov. 28 07:26:44 2025] [3499669]    26 3499669   740699   716302  5906432        0             0 postmaster
+[ven. nov. 28 07:26:44 2025] [3499670]    26 3499670   660544    80062  3235840        0             0 postmaster
+[ven. nov. 28 07:26:44 2025] [3499671]    26 3499671   751928   727820  5992448        0             0 postmaster
+[ven. nov. 28 07:26:44 2025] [3499678]    26 3499678   651694     2280   225280        0             0 postmaster
+[ven. nov. 28 07:26:44 2025] [3499679]    26 3499679   651694     2265   241664        0             0 postmaster
+[ven. nov. 28 07:26:44 2025] [3499680]    26 3499680   651694     2296   225280        0             0 postmaster
+[ven. nov. 28 07:26:44 2025] [3499681]    26 3499681   651694     2297   225280        0             0 postmaster
+[ven. nov. 28 07:26:44 2025] [3499682]    26 3499682   651694     2297   225280        0             0 postmaster
+[ven. nov. 28 07:26:44 2025] [3499683]    26 3499683   651694     2281   225280        0             0 postmaster
+[ven. nov. 28 07:26:44 2025] [3499688]    48 3499688   582360     6265   483328      107             0 httpd
+[ven. nov. 28 07:26:44 2025] [3617939]    26 3617939   651816    15352   966656        0             0 postmaster
+[ven. nov. 28 07:26:44 2025] [3617940]    26 3617940   651694    14218   950272        0             0 postmaster
+[ven. nov. 28 07:26:44 2025] [3617941]    26 3617941   651694    14187   950272        0             0 postmaster
+[ven. nov. 28 07:26:44 2025] [3617942]    26 3617942   651694    15001   950272        0             0 postmaster
+[ven. nov. 28 07:26:44 2025] [3617943]    26 3617943   651694    15002   950272        0             0 postmaster
+[ven. nov. 28 07:26:44 2025] [3617944]    26 3617944   651694    14795   954368        0             0 postmaster
+[ven. nov. 28 07:26:44 2025] [3617945]    26 3617945   651694    14874   946176        0             0 postmaster
+[ven. nov. 28 07:26:44 2025] [3617946]    26 3617946   651694    14473   946176        0             0 postmaster
+[ven. nov. 28 07:26:44 2025] [3617947]    26 3617947   656618   626391  5226496        0             0 postmaster
+[ven. nov. 28 07:26:44 2025] [3617948]    26 3617948   659725   614075  5255168        0             0 postmaster
+[ven. nov. 28 07:26:44 2025] [3756344]    48 3756344    84548    11098   339968        0             0 php-fpm
+[ven. nov. 28 07:26:44 2025] [3835079]     0 3835079     1518       70    49152        0             0 incrond
+[ven. nov. 28 07:26:44 2025] [3856217]    48 3856217    65587     4360   282624        0             0 php-fpm
+[ven. nov. 28 07:26:44 2025] [  16319]    48 16319    84484    10412   335872        0             0 php-fpm
+[ven. nov. 28 07:26:44 2025] [ 569297]    48 569297    65681     4546   282624        0             0 php-fpm
+[ven. nov. 28 07:26:44 2025] [ 569304]    48 569304    84746    11863   348160        0             0 php-fpm
+[ven. nov. 28 07:26:44 2025] [ 569307]    48 569307    62256     2042   221184        0             0 php-fpm
+[ven. nov. 28 07:26:44 2025] [ 578849]    48 578849    62256     2042   221184        0             0 php-fpm
+[ven. nov. 28 07:26:44 2025] [ 578920]    48 578920    62256     2042   221184        0             0 php-fpm
+[ven. nov. 28 07:26:44 2025] [ 578921]    48 578921    65510     2720   237568        0             0 php-fpm
+[ven. nov. 28 07:26:44 2025] [ 949367]    26 949367   651694     8699   614400        0             0 postmaster
+[ven. nov. 28 07:26:44 2025] [ 949368]    26 949368   651694     9021   618496        0             0 postmaster
+[ven. nov. 28 07:26:44 2025] [ 949369]    26 949369   651694     8715   614400        0             0 postmaster
+[ven. nov. 28 07:26:44 2025] [ 949370]    26 949370   651694     9595   618496        0             0 postmaster
+[ven. nov. 28 07:26:44 2025] [ 949371]    26 949371   651694     9566   618496        0             0 postmaster
+[ven. nov. 28 07:26:44 2025] [ 949372]    26 949372   651694     9533   618496        0             0 postmaster
+[ven. nov. 28 07:26:44 2025] [ 949373]    26 949373   651694     8731   614400        0             0 postmaster
+[ven. nov. 28 07:26:44 2025] [ 949374]    26 949374   651694     9102   622592        0             0 postmaster
+[ven. nov. 28 07:26:44 2025] [ 949375]    26 949375   651694     9554   634880        0             0 postmaster
+[ven. nov. 28 07:26:44 2025] [ 949376]    26 949376   652132    13096   729088        0             0 postmaster
+[ven. nov. 28 07:26:44 2025] [1514209]    48 1514209    65510     2720   237568        0             0 php-fpm
+[ven. nov. 28 07:26:44 2025] [1563514]    48 1563514    65510     2720   237568        0             0 php-fpm
+[ven. nov. 28 07:26:44 2025] [1563584]    26 1563584   702426   677477  5586944        0             0 postmaster
+[ven. nov. 28 07:26:44 2025] [1563595]    48 1563595    65510     2721   237568        0             0 php-fpm
+[ven. nov. 28 07:26:44 2025] [1563601]    48 1563601    65510     2721   237568        0             0 php-fpm
+[ven. nov. 28 07:26:44 2025] [3101963]    26 3101963   839911   815862  6684672        0             0 postmaster
+[ven. nov. 28 07:26:44 2025] [3131596]   998 3131596    53031    12115   528384      332             0 /opt/saltstack/
+[ven. nov. 28 07:26:44 2025] [3161093]   998 3161093    70766    12088   401408      367             0 /opt/saltstack/
+[ven. nov. 28 07:26:44 2025] [3180605]    26 3180605   652459    22383  1400832        0             0 postmaster
+[ven. nov. 28 07:26:44 2025] [3211573]     0 3211573     1816       85    57344        0             0 sh
+[ven. nov. 28 07:26:44 2025] [3211588]     0 3211588    51013     3520   241664        0             0 console
+[ven. nov. 28 07:26:44 2025] [3221386]    26 3221386   652430     6626   364544        0             0 postmaster
+[ven. nov. 28 07:26:44 2025] [3240780]    26 3240780  1258797   920354  9089024        0             0 postmaster
+[ven. nov. 28 07:26:44 2025] [3240781]    26 3240781  1258797   920321  9089024        0             0 postmaster
+[ven. nov. 28 07:26:44 2025] [3240782]    26 3240782  1258763   909772  9089024        0             0 postmaster
+[ven. nov. 28 07:26:44 2025] [3240783]    26 3240783  1258797   920100  9093120        0             0 postmaster
+[ven. nov. 28 07:26:44 2025] [3240810]    26 3240810   651444      604   135168        0             0 postmaster
+[ven. nov. 28 07:26:44 2025] oom-kill:constraint=CONSTRAINT_NONE,nodemask=(null),cpuset=/,mems_allowed=0,global_oom,task_memcg=/system.slice/postgresql-15.service,task=postmaster,pid=3499662,uid=26
+[ven. nov. 28 07:26:44 2025] Out of memory: Killed process 3499662 (postmaster) total-vm:5083036kB, anon-rss:854636kB, file-rss:0kB, shmem-rss:3445804kB, UID:26 pgtables:9004kB oom_score_adj:0
