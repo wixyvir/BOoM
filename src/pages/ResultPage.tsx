@@ -1,15 +1,41 @@
+import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { ArrowLeft, CheckCircle2 } from 'lucide-react';
+import { CompressionService } from '../services/CompressionService';
 
 export function ResultPage() {
     const location = useLocation();
     const navigate = useNavigate();
-    const snippet = location.state?.snippet || '';
+    const [snippet, setSnippet] = useState('');
+    const [error, setError] = useState('');
+
+    useEffect(() => {
+        const hash = location.hash.slice(1); // Remove #
+        if (!hash) {
+            setSnippet('');
+            return;
+        }
+
+        const loadSnippet = async () => {
+            try {
+                const decompressed = await CompressionService.decompress(hash);
+                setSnippet(decompressed);
+                setError('');
+            } catch (err) {
+                console.error('Failed to decompress snippet:', err);
+                setError('Failed to load snippet. The URL might be invalid.');
+            }
+        };
+
+        loadSnippet();
+    }, [location.hash]);
 
     if (!snippet) {
         return (
             <div className="text-center py-20">
-                <h2 className="text-2xl font-semibold text-slate-800">No snippet found</h2>
+                <h2 className="text-2xl font-semibold text-slate-800">
+                    {error || 'No snippet found'}
+                </h2>
                 <button
                     onClick={() => navigate('/')}
                     className="mt-4 text-primary-600 hover:underline"

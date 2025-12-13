@@ -2,17 +2,21 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowRight, FileText } from 'lucide-react';
 import { cn } from '../lib/utils';
+import { CompressionService } from '../services/CompressionService';
 
 export function InputPage() {
     const [snippet, setSnippet] = useState('');
     const navigate = useNavigate();
 
-    const handleAnalyze = () => {
+    const handleAnalyze = async () => {
         if (!snippet.trim()) return;
-        // In a real app, we might store this in context or send to backend.
-        // For now, we'll pass it via state location or just assume it's stored globally/locally.
-        // Let's use navigation state for simplicity.
-        navigate('/result', { state: { snippet } });
+        try {
+            const compressed = await CompressionService.compress(snippet);
+            navigate(`/result#${compressed}`);
+        } catch (error) {
+            console.error('Failed to compress snippet:', error);
+            // Handle error appropriately (e.g., show toast)
+        }
     };
 
     return (
