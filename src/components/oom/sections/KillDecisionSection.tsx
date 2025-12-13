@@ -2,7 +2,8 @@ import { Skull, AlertTriangle, Folder } from 'lucide-react';
 import type { OOMConstraint, KilledProcess } from '../../../types/OOMTypes';
 import { SectionCard } from '../shared/SectionCard';
 import { MetricDisplay, MetricGrid } from '../shared/MetricDisplay';
-import { MemoryBar, formatBytes } from '../shared/MemoryBar';
+import { MemoryBar } from '../shared/MemoryBar';
+import { formatBytes } from '../../../lib/format';
 
 interface KillDecisionSectionProps {
   constraint: OOMConstraint;

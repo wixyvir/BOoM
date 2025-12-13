@@ -3,7 +3,7 @@ import { List, ArrowUpDown, Search, Shield, ShieldAlert } from 'lucide-react';
 import type { ProcessInfo } from '../../../types/OOMTypes';
 import { SectionCard } from '../shared/SectionCard';
 import { cn } from '../../../lib/utils';
-import { formatBytes } from '../shared/MemoryBar';
+import { formatBytes } from '../../../lib/format';
 
 interface ProcessListSectionProps {
   processes: ProcessInfo[];

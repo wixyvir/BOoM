@@ -21,7 +21,8 @@ export function ResultPage() {
     useEffect(() => {
         const hash = location.hash.slice(1); // Remove #
         if (!hash) {
-            setSnippet('');
+            // Use a microtask to avoid synchronous setState in effect
+            queueMicrotask(() => setSnippet(''));
             return;
         }
 

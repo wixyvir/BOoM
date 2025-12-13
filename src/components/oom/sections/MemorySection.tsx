@@ -2,7 +2,8 @@ import { HardDrive, Database } from 'lucide-react';
 import type { MemoryInfo } from '../../../types/OOMTypes';
 import { SectionCard } from '../shared/SectionCard';
 import { MetricDisplay, MetricGrid } from '../shared/MetricDisplay';
-import { MemoryBar, formatBytes } from '../shared/MemoryBar';
+import { MemoryBar } from '../shared/MemoryBar';
+import { formatBytes } from '../../../lib/format';
 import { CollapsibleSection } from '../shared/CollapsibleSection';
 
 interface MemorySectionProps {

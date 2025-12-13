@@ -122,7 +122,7 @@ export class OOMParserService {
     return defaultTrigger;
   }
 
-  private static parseSystemInfo(lines: string[], _errors: string[]): SystemInfo {
+  private static parseSystemInfo(lines: string[], _errors?: string[]): SystemInfo {
     const defaultInfo: SystemInfo = {
       cpu: 0,
       pid: 0,
@@ -172,7 +172,7 @@ export class OOMParserService {
     return defaultInfo;
   }
 
-  private static parseCallStack(lines: string[], _errors: string[]): CallStack {
+  private static parseCallStack(lines: string[], _errors?: string[]): CallStack {
     const callStack: CallStack = {
       frames: [],
       registers: null,
@@ -273,7 +273,7 @@ export class OOMParserService {
     return callStack;
   }
 
-  private static parseMemoryInfo(lines: string[], _errors: string[]): MemoryInfo {
+  private static parseMemoryInfo(lines: string[], _errors?: string[]): MemoryInfo {
     const memoryInfo: MemoryInfo = {
       memInfoPages: this.parseMemInfoPages(lines),
       nodeMemory: this.parseNodeMemory(lines),
@@ -588,7 +588,7 @@ export class OOMParserService {
     return reserves;
   }
 
-  private static parseProcessList(lines: string[], _errors: string[]): ProcessInfo[] {
+  private static parseProcessList(lines: string[], _errors?: string[]): ProcessInfo[] {
     const processes: ProcessInfo[] = [];
     let inProcessList = false;
 

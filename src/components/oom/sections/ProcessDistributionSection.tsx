@@ -2,7 +2,7 @@ import { useMemo, useState, useCallback } from 'react';
 import { BarChart3, ChevronDown, ChevronRight, ArrowUpDown, Info, ExternalLink } from 'lucide-react';
 import type { ProcessInfo, MemoryInfo } from '../../../types/OOMTypes';
 import { SectionCard } from '../shared/SectionCard';
-import { formatBytes } from '../shared/MemoryBar';
+import { formatBytes } from '../../../lib/format';
 import { cn } from '../../../lib/utils';
 
 interface ProcessDistributionSectionProps {
