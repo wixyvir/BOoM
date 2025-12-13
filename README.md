@@ -2,8 +2,17 @@
 
 **Better Out of Memory Viewer** - A web application for analyzing Linux OOM (Out of Memory) kill logs.
 
+## Disclaimer
+
 > **:warning: Warning**
 > This project is in early development stage. The parser may not correctly handle all OOM log formats. Use with caution and always verify critical information manually.
+
+- I am not a frontend software engineer so I use CLAUDE to help me build this, so I can easily view and share Out of Memory traces.
+
+## Screenshot
+
+![BOoM Viewer Screenshot](documentation/screenshot.png)
+
 
 ## Alpha online access
 
