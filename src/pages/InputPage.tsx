@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { ArrowRight, FileText, ChevronDown, ChevronRight, Terminal, Copy, HelpCircle } from 'lucide-react';
 import { cn } from '../lib/utils';
 import { CompressionService } from '../services/CompressionService';
+import { DevelopmentWarning } from '../components/DevelopmentWarning';
 
 interface HelpSectionProps {
     title: string;
@@ -84,6 +85,8 @@ export function InputPage() {
 
     return (
         <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
+            <DevelopmentWarning />
+
             <div className="text-center space-y-4">
                 <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-slate-900">
                     <span className="text-primary-600">B</span>etter <span className="text-primary-600">O</span>ut <span className="text-primary-600">o</span>f <span className="text-primary-600">M</span>emory Viewer
