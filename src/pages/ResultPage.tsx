@@ -4,6 +4,7 @@ import { ArrowLeft, CheckCircle2, FileText, BarChart3 } from 'lucide-react';
 import { CompressionService } from '../services/CompressionService';
 import { OOMParserService } from '../services/OOMParserService';
 import { OOMAnalysis } from '../components/oom/OOMAnalysis';
+import { DevelopmentWarning } from '../components/DevelopmentWarning';
 import type { ParsedOOMLog } from '../types/OOMTypes';
 import { cn } from '../lib/utils';
 
@@ -71,6 +72,8 @@ export function ResultPage() {
 
     return (
         <div className="space-y-6 animate-in fade-in duration-500">
+            <DevelopmentWarning />
+
             <button
                 onClick={() => navigate('/')}
                 className="group flex items-center gap-2 text-sm font-medium text-slate-500 hover:text-slate-800 transition-colors"
