@@ -1,73 +1,130 @@
-# React + TypeScript + Vite
+# BOoM Viewer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Better Out of Memory Viewer** - A web application for analyzing Linux OOM (Out of Memory) kill logs.
 
-Currently, two official plugins are available:
+> **:warning: Warning**
+> This project is in early development stage. The parser may not correctly handle all OOM log formats. Use with caution and always verify critical information manually.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Alpha online access
 
-## React Compiler
+:x: still undeployed
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Features
 
-## Expanding the ESLint configuration
+- Parse and analyze Linux kernel OOM kill logs
+- Extract structured information: trigger process, memory statistics, process list, kill decision
+- Visual memory bars and sortable process tables
+- Shareable URLs - paste a log, get a compressed URL to share
+- Client-side only - no data sent to any server
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Demo
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Paste your OOM log content and get an instant analysis with:
+- System information (kernel version, hardware)
+- Memory breakdown (anonymous, file, shmem, swap)
+- Process list with memory usage
+- Kill decision details
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## Installation for development
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+# Clone the repository
+cd boom-viewer
+
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Usage
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+1. Open the application in your browser
+2. Paste your OOM kill log (from `dmesg`, `journalctl`, or `/var/log/messages`)
+3. Click "Analyze" to parse and visualize the log
+4. Share the generated URL with others
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Extracting OOM Logs
+
+```bash
+# From dmesg
+dmesg | grep -A 200 "invoked oom-killer"
+
+# From journalctl
+journalctl -k | grep -A 200 "invoked oom-killer"
+
+# From log files
+grep -A 200 "invoked oom-killer" /var/log/messages
 ```
+
+## Tech Stack
+
+- **Framework**: React 19 + TypeScript
+- **Build Tool**: Vite 7
+- **Styling**: TailwindCSS
+- **Compression**: Brotli (via brotli-wasm)
+- **Testing**: Vitest
+
+## Development
+
+```bash
+# Start development server
+npm run dev
+
+# Run tests
+npm test
+
+# Run tests once
+npm run test:run
+
+# Run tests with coverage
+npm run test:coverage
+
+# Build for production
+npm run build
+
+# Preview production build
+npm run preview
+
+# Lint code
+npm run lint
+```
+
+## Docker
+
+Build and run the production image:
+
+```bash
+# Build the image
+docker build -t boom-viewer .
+
+# Run the container
+docker run -p 8080:80 boom-viewer
+```
+
+Then open http://localhost:8080 in your browser.
+
+## Known Limitations
+
+- The DMA zone (without "32") is not parsed due to a regex limitation
+- Some multi-line memory info fields may not be captured
+- Hardware name parsing may be incomplete for vendor names containing commas
+- RIP register values are truncated at the `0x` prefix
+
+These limitations are documented in the test suite and will be addressed in future releases.
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request. For major changes, please open an issue first to discuss what you would like to change.
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## License
+
+This project is open source. See the LICENSE file for details.
+
