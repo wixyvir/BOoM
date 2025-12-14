@@ -23,7 +23,7 @@
     "url": "https://github.com/yourusername/boom-viewer/issues"
   },
   "author": "Cyprien",
-  "license": "MIT",
+  "license": "GPLv3",
   "type": "module",
   "scripts": {
     "dev": "vite",
