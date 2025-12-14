@@ -17,7 +17,7 @@
   "homepage": "https://oom.cyprien.eu",
   "repository": {
     "type": "git",
-    "url": "https://github.com/yourusername/boom-viewer.git"
+    "url": "https://github.com/wixyvir/boom.git"
   },
   "bugs": {
     "url": "https://github.com/yourusername/boom-viewer/issues"
