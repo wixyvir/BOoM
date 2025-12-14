@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Sitemap location
-Sitemap: https://oom.cyprien.eu/sitemap.xml
+Sitemap: https://boom.cyprien.eu/sitemap.xml
 
 # Crawl delay (optional - be nice to smaller crawlers)
 Crawl-delay: 1
