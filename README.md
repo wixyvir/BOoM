@@ -16,7 +16,7 @@
 
 ## Alpha online access
 
-:x: still undeployed
+- https://boom.cyprien.eu/
 
 ## Features
 
