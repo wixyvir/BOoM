@@ -100,6 +100,15 @@ npm run preview
 npm run lint
 ```
 
+### Test Fixtures
+
+The parser is tested against real-world OOM logs stored in `tests/fixtures/`:
+
+To add a new test fixture:
+1. Add your `.txt` file to `tests/fixtures/`
+2. Run `npm test` - the new fixture will be automatically tested
+3. All fixtures must pass the core parsing tests (trigger, system info, memory, processes, etc.)
+
 ## Docker
 
 Build and run the production image:
@@ -116,12 +125,28 @@ Then open http://localhost:8080 in your browser.
 
 ## Known Limitations
 
-- The DMA zone (without "32") is not parsed due to a regex limitation
-- Some multi-line memory info fields may not be captured
-- Hardware name parsing may be incomplete for vendor names containing commas
-- RIP register values are truncated at the `0x` prefix
+The parser has been tested against multiple OOM log formats and handles most cases correctly. However, some edge cases remain:
 
-These limitations are documented in the test suite and will be addressed in future releases.
+### Parsing Limitations
+
+1. **DMA Zone**: The DMA memory zone (without "32") is not extracted due to a regex pattern limitation
+   - `DMA32` and `Normal` zones are parsed correctly
+   - Buddy info for the plain `DMA` zone is also skipped
+
+2. **Page Tables**: Multi-line memory info fields like `pagetables` on continuation lines may return 0
+   - This occurs when the field appears on a line without a timestamp prefix
+
+3. **RIP Register**: The RIP register value is partially truncated
+   - Format `0033:0x65c2a5` is parsed as `0033:0` due to the `x` character not being in the regex character class
+   - Other registers (RSP, RAX, RBX, etc.) parse correctly
+
+### Testing
+
+All limitations are documented in the test suite with specific test cases. The parser is tested against multiple real-world OOM log fixtures to ensure reliability.
+
+### Future Improvements
+
+These limitations will be addressed in future releases. Contributions to improve the parser are welcome!
 
 ## Contributing
 

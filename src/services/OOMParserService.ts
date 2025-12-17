@@ -160,12 +160,20 @@ export class OOMParserService {
     // Find Hardware line
     const hwLine = this.findLineContaining(lines, 'Hardware name:');
     if (hwLine) {
-      const hwMatch = hwLine.match(/Hardware name:\s*([^,]+),\s*([^/]+)\/([^,]+),\s*BIOS\s*(.+)$/);
-      if (hwMatch) {
-        defaultInfo.hardwareVendor = hwMatch[1].trim();
-        defaultInfo.hardwareModel = hwMatch[2].trim();
-        defaultInfo.hardwarePlatform = hwMatch[3].trim();
-        defaultInfo.bios = hwMatch[4].trim();
+      // Try format with model/platform: "Vendor, Model/Platform, BIOS info"
+      const hwMatchFull = hwLine.match(/Hardware name:\s*([^,]+),\s*([^/]+)\/([^,]+),\s*BIOS\s*(.+)$/);
+      if (hwMatchFull) {
+        defaultInfo.hardwareVendor = hwMatchFull[1].trim();
+        defaultInfo.hardwareModel = hwMatchFull[2].trim();
+        defaultInfo.hardwarePlatform = hwMatchFull[3].trim();
+        defaultInfo.bios = hwMatchFull[4].trim();
+      } else {
+        // Try simplified format: "Vendor, BIOS info" (no model/platform)
+        const hwMatchSimple = hwLine.match(/Hardware name:\s*([^,]+),\s*BIOS\s*(.+)$/);
+        if (hwMatchSimple) {
+          defaultInfo.hardwareVendor = hwMatchSimple[1].trim();
+          defaultInfo.bios = hwMatchSimple[2].trim();
+        }
       }
     }
 

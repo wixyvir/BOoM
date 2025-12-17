@@ -1,0 +1,136 @@
+[mer. déc. 17 11:32:14 2025] gmain invoked oom-killer: gfp_mask=0x140cca(GFP_HIGHUSER_MOVABLE|__GFP_COMP), order=0, oom_score_adj=0
+[mer. déc. 17 11:32:14 2025] CPU: 0 PID: 869 Comm: gmain Kdump: loaded Not tainted 5.14.0-611.11.1.el9_7.x86_64 #1
+[mer. déc. 17 11:32:14 2025] Hardware name: RDO Project OpenStack Nova, BIOS 1.11.0-2.el7 04/01/2014
+[mer. déc. 17 11:32:14 2025] Call Trace:
+[mer. déc. 17 11:32:14 2025]  <TASK>
+[mer. déc. 17 11:32:14 2025]  dump_stack_lvl+0x34/0x48
+[mer. déc. 17 11:32:14 2025]  dump_header+0x49/0x212
+[mer. déc. 17 11:32:14 2025]  oom_kill_process.cold+0xb/0x10
+[mer. déc. 17 11:32:14 2025]  out_of_memory+0xee/0x2b0
+[mer. déc. 17 11:32:14 2025]  __alloc_pages_slowpath.constprop.0+0x793/0xb10
+[mer. déc. 17 11:32:14 2025]  __alloc_pages+0x21c/0x250
+[mer. déc. 17 11:32:14 2025]  alloc_pages_mpol+0x93/0x1e0
+[mer. déc. 17 11:32:14 2025]  ? filemap_get_entry+0xe3/0x140
+[mer. déc. 17 11:32:14 2025]  folio_alloc+0x12/0x30
+[mer. déc. 17 11:32:14 2025]  __filemap_get_folio+0x189/0x2e0
+[mer. déc. 17 11:32:14 2025]  filemap_fault+0x4d5/0x8b0
+[mer. déc. 17 11:32:14 2025]  __do_fault+0x31/0x150
+[mer. déc. 17 11:32:14 2025]  do_read_fault+0x11e/0x1d0
+[mer. déc. 17 11:32:14 2025]  do_pte_missing+0x157/0x200
+[mer. déc. 17 11:32:14 2025]  __handle_mm_fault+0x2fe/0x650
+[mer. déc. 17 11:32:14 2025]  handle_mm_fault+0xfb/0x270
+[mer. déc. 17 11:32:14 2025]  do_user_addr_fault+0x215/0x620
+[mer. déc. 17 11:32:14 2025]  exc_page_fault+0x61/0x150
+[mer. déc. 17 11:32:14 2025]  asm_exc_page_fault+0x22/0x30
+[mer. déc. 17 11:32:14 2025] RIP: 0033:0x7fb51d6e71a3
+[mer. déc. 17 11:32:14 2025] Code: Unable to access opcode bytes at 0x7fb51d6e7179.
+[mer. déc. 17 11:32:14 2025] RSP: 002b:00007fb51b9fde80 EFLAGS: 00010246
+[mer. déc. 17 11:32:14 2025] RAX: 0000000000000000 RBX: 0000556a814f3640 RCX: 0000000000000000
+[mer. déc. 17 11:32:14 2025] RDX: 0000000000053118 RSI: 000000152189eb40 RDI: 0000556a8144b100
+[mer. déc. 17 11:32:14 2025] RBP: 000000152189eb40 R08: 00007fb514000c50 R09: 0000a4b242e57f9c
+[mer. déc. 17 11:32:14 2025] R10: 00007ffc5ead0080 R11: 0000000000000202 R12: 0000556a8144b100
+[mer. déc. 17 11:32:14 2025] R13: 0000000000000000 R14: 00007fb514000c30 R15: 0000556a8144b100
+[mer. déc. 17 11:32:14 2025]  </TASK>
+[mer. déc. 17 11:32:14 2025] Mem-Info:
+[mer. déc. 17 11:32:14 2025] active_anon:593632 inactive_anon:280104 isolated_anon:0
+                               active_file:13 inactive_file:1 isolated_file:0
+                               unevictable:1271 dirty:0 writeback:0
+                               slab_reclaimable:13521 slab_unreclaimable:11960
+                               mapped:35145 shmem:40003 pagetables:4722
+                               sec_pagetables:0 bounce:0
+                               kernel_misc_reclaimable:0
+                               free:21347 free_pcp:0 free_cma:0
+[mer. déc. 17 11:32:14 2025] Node 0 active_anon:2374528kB inactive_anon:1120416kB active_file:52kB inactive_file:4kB unevictable:5084kB isolated(anon):0kB isolated(file):0kB mapped:140580kB dirty:0kB writeback:0kB shmem:160012kB shmem_thp:0kB shmem_pmdmapped:0kB anon_thp:839680kB writeback_tmp:0kB kernel_stack:7120kB pagetables:18888kB sec_pagetables:0kB all_unreclaimable? yes
+[mer. déc. 17 11:32:14 2025] Node 0 DMA free:14632kB boost:0kB min:280kB low:348kB high:416kB reserved_highatomic:0KB active_anon:56kB inactive_anon:160kB active_file:0kB inactive_file:0kB unevictable:0kB writepending:0kB present:15992kB managed:15360kB mlocked:0kB bounce:0kB free_pcp:0kB local_pcp:0kB free_cma:0kB
+[mer. déc. 17 11:32:14 2025] lowmem_reserve[]: 0 2696 3594 3594 3594
+[mer. déc. 17 11:32:14 2025] Node 0 DMA32 free:54020kB boost:0kB min:50484kB low:63104kB high:75724kB reserved_highatomic:0KB active_anon:1807036kB inactive_anon:880436kB active_file:0kB inactive_file:0kB unevictable:0kB writepending:0kB present:3129200kB managed:2801520kB mlocked:0kB bounce:0kB free_pcp:0kB local_pcp:0kB free_cma:0kB
+[mer. déc. 17 11:32:14 2025] lowmem_reserve[]: 0 0 898 898 898
+[mer. déc. 17 11:32:14 2025] Node 0 Normal free:16736kB boost:0kB min:16816kB low:21020kB high:25224kB reserved_highatomic:0KB active_anon:567436kB inactive_anon:239820kB active_file:0kB inactive_file:0kB unevictable:5084kB writepending:0kB present:1048576kB managed:926180kB mlocked:0kB bounce:0kB free_pcp:0kB local_pcp:0kB free_cma:0kB
+[mer. déc. 17 11:32:14 2025] lowmem_reserve[]: 0 0 0 0 0
+[mer. déc. 17 11:32:14 2025] Node 0 DMA: 0*4kB 1*8kB (M) 0*16kB 1*32kB (M) 0*64kB 0*128kB 1*256kB (M) 2*512kB (UM) 1*1024kB (M) 0*2048kB 3*4096kB (M) = 14632kB
+[mer. déc. 17 11:32:14 2025] Node 0 DMA32: 1262*4kB (UME) 762*8kB (UME) 557*16kB (UME) 255*32kB (UME) 101*64kB (UME) 57*128kB (UME) 37*256kB (UME) 6*512kB (UM) 0*1024kB 0*2048kB 0*4096kB = 54520kB
+[mer. déc. 17 11:32:14 2025] Node 0 Normal: 605*4kB (UME) 470*8kB (UME) 238*16kB (UME) 89*32kB (UME) 43*64kB (UME) 15*128kB (UME) 0*256kB 0*512kB 0*1024kB 0*2048kB 0*4096kB = 17508kB
+[mer. déc. 17 11:32:14 2025] Node 0 hugepages_total=0 hugepages_free=0 hugepages_surp=0 hugepages_size=1048576kB
+[mer. déc. 17 11:32:14 2025] Node 0 hugepages_total=0 hugepages_free=0 hugepages_surp=0 hugepages_size=2048kB
+[mer. déc. 17 11:32:14 2025] 40952 total pagecache pages
+[mer. déc. 17 11:32:14 2025] 0 pages in swap cache
+[mer. déc. 17 11:32:14 2025] Free swap  = 2097148kB
+[mer. déc. 17 11:32:14 2025] Total swap = 2097148kB
+[mer. déc. 17 11:32:14 2025] 1048442 pages RAM
+[mer. déc. 17 11:32:14 2025] 0 pages HighMem/MovableOnly
+[mer. déc. 17 11:32:14 2025] 112677 pages reserved
+[mer. déc. 17 11:32:14 2025] 0 pages cma reserved
+[mer. déc. 17 11:32:14 2025] 0 pages hwpoisoned
+[mer. déc. 17 11:32:14 2025] Tasks state (memory values in pages):
+[mer. déc. 17 11:32:14 2025] [  pid  ]   uid  tgid total_vm      rss pgtables_bytes swapents oom_score_adj name
+[mer. déc. 17 11:32:14 2025] [    248]     0   248     2114     1552    53248        0             0 haveged
+[mer. déc. 17 11:32:14 2025] [    616]     0   616    11188     2097    98304        0          -250 systemd-journal
+[mer. déc. 17 11:32:14 2025] [    628]     0   628     8992      512    90112        0         -1000 systemd-udevd
+[mer. déc. 17 11:32:14 2025] [    719]    32   719     3689      256    73728        0             0 rpcbind
+[mer. déc. 17 11:32:14 2025] [    721]     0   721    23378      292    65536        0         -1000 auditd
+[mer. déc. 17 11:32:14 2025] [    723]     0   723     1927       96    53248        0             0 sedispatch
+[mer. déc. 17 11:32:14 2025] [    751]    81   751     2681      224    61440        0          -900 dbus-broker-lau
+[mer. déc. 17 11:32:14 2025] [    752]    81   752     1291      128    49152        0          -900 dbus-broker
+[mer. déc. 17 11:32:14 2025] [    756]     0   756    32630     6156   163840        0             0 firewalld
+[mer. déc. 17 11:32:14 2025] [    759]     0   759    20682       64    65536        0             0 irqbalance
+[mer. déc. 17 11:32:14 2025] [    760]   985   760      693       64    45056        0             0 lsmd
+[mer. déc. 17 11:32:14 2025] [    761]     0   761      722       64    40960        0             0 mcelog
+[mer. déc. 17 11:32:14 2025] [    763]     0   763     5183      352    77824        0             0 systemd-logind
+[mer. déc. 17 11:32:14 2025] [    771]     0   771     1526       67    53248        0             0 incrond
+[mer. déc. 17 11:32:14 2025] [    781]   996   781    21229      166    73728        0             0 chronyd
+[mer. déc. 17 11:32:14 2025] [    838]   997   838   645020     1356   212992        0             0 polkitd
+[mer. déc. 17 11:32:14 2025] [    868]     0   868    64983      768   147456        0             0 NetworkManager
+[mer. déc. 17 11:32:14 2025] [    895]   991   895   110909     7488   184320        0             0 memcached
+[mer. déc. 17 11:32:14 2025] [    897]     0   897    62222     2727   229376        0             0 php-fpm
+[mer. déc. 17 11:32:14 2025] [    901]     0   901    54882     2897   212992        0             0 php-fpm
+[mer. déc. 17 11:32:14 2025] [    902]     0   902    64678     3331   143360        0             0 tuned
+[mer. déc. 17 11:32:14 2025] [    909]     0   909    14150      298    77824        0             0 gssproxy
+[mer. déc. 17 11:32:14 2025] [   1040]   992  1040   549567   285781  2662400        0             0 mariadbd
+[mer. déc. 17 11:32:14 2025] [   1225]     0  1225    21662      384    77824        0             0 monit
+[mer. déc. 17 11:32:14 2025] [   1229]     0  1229     5103     2336    77824        0             0 munin-node
+[mer. déc. 17 11:32:14 2025] [   1231]     0  1231    49381     2110   118784        0             0 rsyslogd
+[mer. déc. 17 11:32:14 2025] [   1235]     0  1235     6420     1088    94208        0             0 snmpd
+[mer. déc. 17 11:32:14 2025] [   1239]     0  1239     4380      416    69632        0         -1000 sshd
+[mer. déc. 17 11:32:14 2025] [   1247]     0  1247     6411     1332    81920        0             0 httpd
+[mer. déc. 17 11:32:14 2025] [   1251]  1000  1251    58119    10375   278528        0             0 php-fpm
+[mer. déc. 17 11:32:14 2025] [   1253]  1000  1253    60207    12499   294912        0             0 php-fpm
+[mer. déc. 17 11:32:14 2025] [   1271]     0  1271     1189       64    45056        0             0 atd
+[mer. déc. 17 11:32:14 2025] [   1272]     0  1272     2160      224    57344        0             0 crond
+[mer. déc. 17 11:32:14 2025] [   1285]     0  1285      764       64    45056        0             0 agetty
+[mer. déc. 17 11:32:14 2025] [   1314]  1000  1314    64417    20478   417792        0             0 php-fpm
+[mer. déc. 17 11:32:14 2025] [   1315]  1000  1315   101579    50268   651264        0             0 php-fpm
+[mer. déc. 17 11:32:14 2025] [  17318]  1000 17318    65410    17449   401408        0             0 php-fpm
+[mer. déc. 17 11:32:14 2025] [  17873]  1000 17873   193798   146470  1458176        0             0 php-fpm
+[mer. déc. 17 11:32:14 2025] [  17875]  1000 17875    64826    19982   409600        0             0 php-fpm
+[mer. déc. 17 11:32:14 2025] [ 108550]  1000 108550     6655      959    81920        0             0 httpd
+[mer. déc. 17 11:32:14 2025] [ 108551]     0 108551     6996      927    81920        0             0 httpd
+[mer. déc. 17 11:32:14 2025] [ 108552]  1000 108552   394260     3629   442368        0             0 httpd
+[mer. déc. 17 11:32:14 2025] [ 108553]  1000 108553   361457     3715   376832        0             0 httpd
+[mer. déc. 17 11:32:14 2025] [ 108554]  1000 108554   361457     3836   372736        0             0 httpd
+[mer. déc. 17 11:32:14 2025] [ 183062]  1000 183062   361481     3943   372736        0             0 httpd
+[mer. déc. 17 11:32:14 2025] [ 188143]  1000 188143   108238    65461   774144        0             0 php-fpm
+[mer. déc. 17 11:32:14 2025] [ 188152]  1000 188152   125769    81665   917504        0             0 php-fpm
+[mer. déc. 17 11:32:14 2025] [ 188791]  1000 188791    64752    10097   348160        0             0 php-fpm
+[mer. déc. 17 11:32:14 2025] [ 188798]  1000 188798    65298    11314   352256        0             0 php-fpm
+[mer. déc. 17 11:32:14 2025] [ 188835]  1000 188835    64734    10321   348160        0             0 php-fpm
+[mer. déc. 17 11:32:14 2025] [ 189495]  1000 189495    62835    15096   319488        0             0 php-fpm
+[mer. déc. 17 11:32:14 2025] [ 189537]  1000 189537   179075   128906  1302528        0             0 php-fpm
+[mer. déc. 17 11:32:14 2025] [ 189557]  1000 189557    65927    18221   344064        0             0 php-fpm
+[mer. déc. 17 11:32:14 2025] [ 189570]  1000 189570    65345    14432   389120        0             0 php-fpm
+[mer. déc. 17 11:32:14 2025] [ 189583]  1000 189583    55423     2400   204800        0             0 php-fpm
+[mer. déc. 17 11:32:14 2025] [ 190212]     0 190212     5246      544    81920        0             0 sshd
+[mer. déc. 17 11:32:14 2025] [ 190216]     0 190216     5587      480    81920        0           100 systemd
+[mer. déc. 17 11:32:14 2025] [ 190218]     0 190218    26883     1005    94208        0           100 (sd-pam)
+[mer. déc. 17 11:32:14 2025] [ 190226]     0 190226     5246      571    81920        0             0 sshd
+[mer. déc. 17 11:32:14 2025] [ 190227]     0 190227     2285      576    65536        0             0 bash
+[mer. déc. 17 11:32:14 2025] [ 190369]  1000 190369    85111    27410   471040        0             0 php-fpm
+[mer. déc. 17 11:32:14 2025] [ 192426]  1000 192426     1784       64    53248        0             0 sh
+[mer. déc. 17 11:32:14 2025] [ 192427]  1000 192427    65721     7808   282624        0             0 php
+[mer. déc. 17 11:32:14 2025] [ 196160]  1000 196160    83163    25534   458752        0             0 php-fpm
+[mer. déc. 17 11:32:14 2025] [ 196162]  1000 196162    78943    21071   421888        0             0 php-fpm
+[mer. déc. 17 11:32:14 2025] [ 196164]  1000 196164    74935    17115   393216        0             0 php-fpm
+[mer. déc. 17 11:32:14 2025] [ 196166]  1000 196166    67918    10763   335872        0             0 php-fpm
+[mer. déc. 17 11:32:14 2025] [ 196169]  1000 196169    64171     2703   266240        0             0 php-fpm
+[mer. déc. 17 11:32:14 2025] [ 196170]  1000 196170    64171     2671   266240        0             0 php-fpm
+[mer. déc. 17 11:32:14 2025] oom-kill:constraint=CONSTRAINT_NONE,nodemask=(null),cpuset=/,mems_allowed=0,global_oom,task_memcg=/system.slice/mariadb.service,task=mariadbd,pid=1040,uid=992
+[mer. déc. 17 11:32:14 2025] Out of memory: Killed process 1040 (mariadbd) total-vm:2198268kB, anon-rss:1143060kB, file-rss:64kB, shmem-rss:0kB, UID:992 pgtables:2600kB oom_score_adj:0
