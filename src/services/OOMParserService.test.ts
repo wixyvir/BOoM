@@ -1,15 +1,93 @@
 import { describe, it, expect, beforeAll } from 'vitest';
-import { readFileSync } from 'fs';
+import { readFileSync, readdirSync } from 'fs';
 import { join } from 'path';
 import { OOMParserService } from './OOMParserService';
 
 // Load the example OOM log fixture
 const fixtureOOMLog = readFileSync(
-  join(__dirname, '../../example_oomkill.txt'),
+  join(__dirname, '../../tests/fixtures/example_oomkill.txt'),
   'utf-8'
 );
 
+// Load all fixtures dynamically
+const fixturesDir = join(__dirname, '../../tests/fixtures');
+const fixtureFiles = readdirSync(fixturesDir).filter(f => f.endsWith('.txt'));
+const fixtures = fixtureFiles.map(filename => ({
+  name: filename,
+  content: readFileSync(join(fixturesDir, filename), 'utf-8')
+}));
+
 describe('OOMParserService', () => {
+  // Test all fixtures
+  describe('All Fixtures', () => {
+    fixtures.forEach(fixture => {
+      describe(fixture.name, () => {
+        it('is detected as OOM log', () => {
+          expect(OOMParserService.isOOMLog(fixture.content)).toBe(true);
+        });
+
+        it('parses successfully without errors', () => {
+          const result = OOMParserService.parse(fixture.content);
+
+          expect(result.success).toBe(true);
+          expect(result.data).not.toBeNull();
+          expect(result.errors).toEqual([]);
+        });
+
+        it('extracts trigger information', () => {
+          const result = OOMParserService.parse(fixture.content);
+
+          expect(result.data?.trigger).toBeDefined();
+          expect(result.data?.trigger.triggerProcess).toBeTruthy();
+          expect(result.data?.trigger.timestamp).toBeTruthy();
+        });
+
+        it('extracts system information', () => {
+          const result = OOMParserService.parse(fixture.content);
+
+          expect(result.data?.systemInfo).toBeDefined();
+          expect(result.data?.systemInfo.cpu).toBeGreaterThanOrEqual(0);
+          expect(result.data?.systemInfo.pid).toBeGreaterThan(0);
+        });
+
+        it('extracts memory information', () => {
+          const result = OOMParserService.parse(fixture.content);
+
+          expect(result.data?.memoryInfo).toBeDefined();
+          expect(result.data?.memoryInfo.memInfoPages).toBeDefined();
+        });
+
+        it('extracts process list', () => {
+          const result = OOMParserService.parse(fixture.content);
+
+          expect(result.data?.processes).toBeDefined();
+          expect(result.data?.processes.length).toBeGreaterThan(0);
+        });
+
+        it('extracts OOM constraint', () => {
+          const result = OOMParserService.parse(fixture.content);
+
+          expect(result.data?.oomConstraint).toBeDefined();
+          expect(result.data?.oomConstraint.constraint).toBeTruthy();
+        });
+
+        it('extracts killed process', () => {
+          const result = OOMParserService.parse(fixture.content);
+
+          expect(result.data?.killedProcess).toBeDefined();
+          expect(result.data?.killedProcess.pid).toBeGreaterThan(0);
+          expect(result.data?.killedProcess.name).toBeTruthy();
+        });
+
+        it('includes raw log content', () => {
+          const result = OOMParserService.parse(fixture.content);
+
+          expect(result.data?.rawLog).toBe(fixture.content);
+        });
+      });
+    });
+  });
+
   describe('isOOMLog', () => {
     it('returns true for logs containing "invoked oom-killer"', () => {
       expect(OOMParserService.isOOMLog('postmaster invoked oom-killer')).toBe(true);
@@ -127,20 +205,47 @@ describe('OOMParserService', () => {
       expect(result.data?.systemInfo.kernelVersion).toBe('5.14.0-362.8.1.el9_3.x86_64');
     });
 
-    it('extracts hardware vendor (partial match due to comma in name)', () => {
-      // Note: The current parser regex splits on comma, so "VMware, Inc." gets split
-      // The parser extracts the portion before the first comma after "Hardware name:"
+    it('extracts hardware vendor from complex format', () => {
+      // Format: "Vendor, Model/Platform, BIOS info"
+      // Example: "VMware, Inc. VMware20,1/440BX Desktop Reference Platform, BIOS ..."
       expect(result.data?.systemInfo.hardwareVendor).toBe('VMware');
     });
 
-    it('extracts hardware model', () => {
-      // Note: Due to the format "VMware, Inc. VMware20,1/440BX...", the parser
-      // captures " Inc. VMware20,1" as the model (between first comma and slash)
+    it('extracts hardware model from complex format', () => {
+      // The model is extracted between the first comma and the first slash
       expect(result.data?.systemInfo.hardwareModel).toBe('Inc. VMware20,1');
     });
 
     it('extracts BIOS info', () => {
       expect(result.data?.systemInfo.bios).toBe('VMW201.00V.24504846.B64.2501180339 01/18/2025');
+    });
+  });
+
+  describe('parseSystemInfo - Fixture 2 (simplified hardware format)', () => {
+    let result: ReturnType<typeof OOMParserService.parse>;
+
+    beforeAll(() => {
+      const fixture2Content = readFileSync(
+        join(__dirname, '../../tests/fixtures/exemple2.txt'),
+        'utf-8'
+      );
+      result = OOMParserService.parse(fixture2Content);
+    });
+
+    it('extracts hardware vendor from simplified format', () => {
+      expect(result.data?.systemInfo.hardwareVendor).toBe('RDO Project OpenStack Nova');
+    });
+
+    it('extracts BIOS info from simplified format', () => {
+      expect(result.data?.systemInfo.bios).toBe('1.11.0-2.el7 04/01/2014');
+    });
+
+    it('leaves model empty for simplified format', () => {
+      expect(result.data?.systemInfo.hardwareModel).toBe('');
+    });
+
+    it('leaves platform empty for simplified format', () => {
+      expect(result.data?.systemInfo.hardwarePlatform).toBe('');
     });
   });
 

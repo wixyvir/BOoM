@@ -1,15 +1,43 @@
 import { describe, it, expect } from 'vitest';
-import { readFileSync } from 'fs';
+import { readFileSync, readdirSync } from 'fs';
 import { join } from 'path';
 import { CompressionService } from './CompressionService';
 
 // Load the example OOM log fixture for testing with real content
 const fixtureOOMLog = readFileSync(
-  join(__dirname, '../../example_oomkill.txt'),
+  join(__dirname, '../../tests/fixtures/example_oomkill.txt'),
   'utf-8'
 );
 
+// Load all fixtures dynamically
+const fixturesDir = join(__dirname, '../../tests/fixtures');
+const fixtureFiles = readdirSync(fixturesDir).filter(f => f.endsWith('.txt'));
+const fixtures = fixtureFiles.map(filename => ({
+  name: filename,
+  content: readFileSync(join(fixturesDir, filename), 'utf-8')
+}));
+
 describe('CompressionService', () => {
+  // Test all fixtures
+  describe('All Fixtures Round-Trip', () => {
+    fixtures.forEach(fixture => {
+      it(`compresses and decompresses ${fixture.name} correctly`, async () => {
+        const compressed = await CompressionService.compress(fixture.content);
+        const decompressed = await CompressionService.decompress(compressed);
+
+        expect(decompressed).toBe(fixture.content);
+      });
+
+      it(`produces smaller output for ${fixture.name}`, async () => {
+        const compressed = await CompressionService.compress(fixture.content);
+
+        // Brotli should compress OOM logs significantly
+        // Base64 adds ~33% overhead, but Brotli compression should overcome this
+        expect(compressed.length).toBeLessThan(fixture.content.length);
+      });
+    });
+  });
+
   describe('compress and decompress round-trip', () => {
     it('compresses and decompresses short strings correctly', async () => {
       const original = 'Hello, World!';
